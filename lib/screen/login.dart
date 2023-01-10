@@ -3,9 +3,15 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'cadastro.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
   const Login({super.key});
 
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  bool showPassword = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,7 +95,7 @@ class Login extends StatelessWidget {
                           vertical: 16,
                         ),
                         child: TextFormField(
-                          keyboardType: TextInputType.emailAddress,
+                          keyboardType: TextInputType.visiblePassword,
                           decoration: InputDecoration(
                             labelStyle: GoogleFonts.karla(
                               fontSize: 14,
@@ -100,9 +106,26 @@ class Login extends StatelessWidget {
                             labelText: 'Password',
                             prefixIcon: const Padding(
                               padding: EdgeInsets.all(5),
-                              child: Icon(Icons.password),
+                              child: Icon(
+                                Icons.lock,
+                                color: Colors.black,
+                              ),
+                            ),
+                            suffixIcon: GestureDetector(
+                              child: Icon(
+                                showPassword == false
+                                    ? Icons.visibility_off
+                                    : Icons.visibility,
+                                color: Colors.black,
+                              ),
+                              onTap: () {
+                                setState(() {
+                                  showPassword = !showPassword;
+                                });
+                              },
                             ),
                           ),
+                          obscureText: showPassword == false ? true : false,
                         ),
                       ),
                       Padding(
@@ -110,14 +133,17 @@ class Login extends StatelessWidget {
                           horizontal: 8,
                           vertical: 36,
                         ),
-                        child: Text(
-                          "Forgot Password?",
-                          style: GoogleFonts.karla(
-                            color: const Color.fromRGBO(136, 136, 136, 1),
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400,
-                            backgroundColor:
-                                const Color.fromRGBO(255, 255, 255, 1),
+                        child: TextButton(
+                          onPressed: () {},
+                          child: Text(
+                            "Forgot Password?",
+                            style: GoogleFonts.karla(
+                              color: const Color.fromRGBO(136, 136, 136, 1),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400,
+                              backgroundColor:
+                                  const Color.fromRGBO(255, 255, 255, 1),
+                            ),
                           ),
                         ),
                       ),
@@ -146,7 +172,7 @@ class Login extends StatelessWidget {
                             ),
                           ),
                         ),
-                        ElevatedButton(
+                        TextButton(
                           onPressed: () {
                             Navigator.push(
                                 context,
@@ -154,7 +180,7 @@ class Login extends StatelessWidget {
                                   builder: ((context) => const Cadastro()),
                                 ));
                           },
-                          style: ElevatedButton.styleFrom(
+                          style: TextButton.styleFrom(
                             foregroundColor: Colors.green,
                             backgroundColor: Colors.white,
                           ),

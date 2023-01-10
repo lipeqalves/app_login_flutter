@@ -2,8 +2,15 @@ import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 
-class Cadastro extends StatelessWidget {
+class Cadastro extends StatefulWidget {
   const Cadastro({super.key});
+
+  @override
+  State<Cadastro> createState() => _CadastroState();
+}
+
+class _CadastroState extends State<Cadastro> {
+  bool showPassword = false;
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +73,7 @@ class Cadastro extends StatelessWidget {
                           vertical: 16,
                         ),
                         child: TextFormField(
-                          keyboardType: TextInputType.emailAddress,
+                          keyboardType: TextInputType.name,
                           decoration: InputDecoration(
                             labelStyle: GoogleFonts.karla(
                               fontSize: 14,
@@ -77,7 +84,10 @@ class Cadastro extends StatelessWidget {
                             labelText: 'Your Name',
                             prefixIcon: const Padding(
                               padding: EdgeInsets.all(5),
-                              child: Icon(Icons.person),
+                              child: Icon(
+                                Icons.person,
+                                color: Colors.black,
+                              ),
                             ),
                           ),
                         ),
@@ -99,7 +109,10 @@ class Cadastro extends StatelessWidget {
                             labelText: 'Email',
                             prefixIcon: const Padding(
                               padding: EdgeInsets.all(5),
-                              child: Icon(Icons.email),
+                              child: Icon(
+                                Icons.email,
+                                color: Colors.black,
+                              ),
                             ),
                           ),
                         ),
@@ -110,7 +123,7 @@ class Cadastro extends StatelessWidget {
                           vertical: 16,
                         ),
                         child: TextFormField(
-                          keyboardType: TextInputType.emailAddress,
+                          keyboardType: TextInputType.phone,
                           decoration: InputDecoration(
                             labelStyle: GoogleFonts.karla(
                               fontSize: 14,
@@ -121,7 +134,10 @@ class Cadastro extends StatelessWidget {
                             labelText: 'Phone',
                             prefixIcon: const Padding(
                               padding: EdgeInsets.all(5),
-                              child: Icon(Icons.phone_android),
+                              child: Icon(
+                                Icons.phone_android,
+                                color: Colors.black,
+                              ),
                             ),
                           ),
                         ),
@@ -132,7 +148,7 @@ class Cadastro extends StatelessWidget {
                           vertical: 16,
                         ),
                         child: TextFormField(
-                          keyboardType: TextInputType.emailAddress,
+                          keyboardType: TextInputType.visiblePassword,
                           decoration: InputDecoration(
                             labelStyle: GoogleFonts.karla(
                               fontSize: 14,
@@ -143,9 +159,25 @@ class Cadastro extends StatelessWidget {
                             labelText: 'Password',
                             prefixIcon: const Padding(
                               padding: EdgeInsets.all(5),
-                              child: Icon(Icons.password),
+                              child: Icon(
+                                Icons.lock,
+                                color: Colors.black,
+                              ),
                             ),
+                            suffixIcon: GestureDetector(
+                                child: Icon(
+                                  color: Colors.black,
+                                  showPassword == false
+                                      ? Icons.visibility_off
+                                      : Icons.visibility,
+                                ),
+                                onTap: () {
+                                  setState(() {
+                                    showPassword = !showPassword;
+                                  });
+                                }),
                           ),
+                          obscureText: showPassword == false ? true : false,
                         ),
                       ),
                     ],
@@ -175,11 +207,11 @@ class Cadastro extends StatelessWidget {
                             ),
                           ),
                         ),
-                        ElevatedButton(
+                        TextButton(
                           onPressed: () {
                             Navigator.pop(context);
                           },
-                          style: ElevatedButton.styleFrom(
+                          style: TextButton.styleFrom(
                             foregroundColor: Colors.green,
                             backgroundColor: Colors.white,
                           ),

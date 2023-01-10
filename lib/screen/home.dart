@@ -16,7 +16,14 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(
+          widget.title,
+          style: GoogleFonts.playfairDisplay(
+            fontSize: 24,
+            color: Colors.white,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
       ),
       body: Container(
         decoration: const BoxDecoration(
@@ -41,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Padding(
                 padding: const EdgeInsets.all(28.0),
-                child: ElevatedButton(
+                child: TextButton(
                   onPressed: () {
                     Navigator.push(
                         context,
@@ -49,12 +56,12 @@ class _MyHomePageState extends State<MyHomePage> {
                           builder: ((context) => const Login()),
                         ));
                   },
-                  style: ElevatedButton.styleFrom(
+                  style: TextButton.styleFrom(
                     foregroundColor: Colors.green,
                     backgroundColor: Colors.white,
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.all(12.0),
+                    padding: const EdgeInsets.all(6.0),
                     child: Text(
                       'Sign to your account',
                       style: GoogleFonts.karla(
