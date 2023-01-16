@@ -81,6 +81,7 @@ class _CadastroState extends State<Cadastro> {
                             ),
                             child: TextFormField(
                               controller: _name,
+                              maxLength: 40,
                               validator: Validatorless.multiple(
                                 [
                                   Validatorless.required('filed is required'),
@@ -113,6 +114,7 @@ class _CadastroState extends State<Cadastro> {
                             ),
                             child: TextFormField(
                               controller: _email,
+                              maxLength: 20,
                               validator: Validatorless.multiple([
                                 Validatorless.email('Value is not email'),
                                 Validatorless.required('filed is required')
@@ -143,6 +145,7 @@ class _CadastroState extends State<Cadastro> {
                             ),
                             child: TextFormField(
                               controller: _phone,
+                              maxLength: 11,
                               validator: Validatorless.multiple([
                                 Validatorless.number('Value not a number'),
                                 Validatorless.max(11, 'fild max 11'),
@@ -175,6 +178,7 @@ class _CadastroState extends State<Cadastro> {
                             ),
                             child: TextFormField(
                               controller: _password,
+                              maxLength: 20,
                               validator: Validatorless.multiple([
                                 Validatorless.required('filed is required'),
                                 Validatorless.min(6, 'field min 6')
@@ -218,6 +222,7 @@ class _CadastroState extends State<Cadastro> {
                             ),
                             child: TextFormField(
                               controller: _comfirmPassword,
+                              maxLength: 20,
                               validator: Validatorless.multiple([
                                 Validatorless.required('filed is required'),
                                 Validatorless.min(6, 'field min 6'),
