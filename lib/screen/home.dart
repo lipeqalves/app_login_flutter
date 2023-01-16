@@ -31,8 +31,8 @@ class _MyHomePageState extends State<MyHomePage> {
           const ContainerImage(),
           Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
                 Text(
                   'Herbalova',
                   style: GoogleFonts.playfairDisplay(
@@ -67,6 +67,11 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                   ),
+                ),
+                const FlutterLogo(
+                  size: 100,
+                  textColor: Colors.white,
+                  style: FlutterLogoStyle.horizontal,
                 ),
               ],
             ),
