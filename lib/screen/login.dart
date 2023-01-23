@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:validatorless/validatorless.dart';
 
+import '../components/buttons.dart';
+import '../components/input.dart';
 import 'cadastro.dart';
 
 class Login extends StatefulWidget {
@@ -70,88 +72,38 @@ class _LoginState extends State<Login> {
                               ),
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8,
-                              vertical: 16,
+                          Input(
+                            type: TextInputType.emailAddress,
+                            controller: _email,
+                            label: 'Email',
+                            validetion: Validatorless.multiple(
+                              [
+                                Validatorless.email('Value is not email'),
+                                Validatorless.required('filed is required')
+                              ],
                             ),
-                            child: TextFormField(
-                              controller: _email,
-                              validator: Validatorless.multiple(
-                                [
-                                  Validatorless.email('Value is not email'),
-                                  Validatorless.required('filed is required')
-                                ],
-                              ),
-                              keyboardType: TextInputType.emailAddress,
-                              decoration: InputDecoration(
-                                labelStyle: GoogleFonts.karla(
-                                  fontSize: 14,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                                border: const OutlineInputBorder(),
-                                labelText: 'Email',
-                                prefixIcon: const Padding(
-                                  padding: EdgeInsets.all(5),
-                                  child: Icon(
-                                    Icons.email,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              ),
+                            prefixoIcone: Icons.email,
+                            hideText: false,
+                            suffixoIcon: false,
+                          ),
+                          Input(
+                            controller: _password,
+                            type: TextInputType.number,
+                            label: 'Password',
+                            validetion: Validatorless.multiple(
+                              [
+                                Validatorless.min(6, 'field min 6'),
+                                Validatorless.required('filed is required')
+                              ],
                             ),
+                            prefixoIcone: Icons.lock,
+                            hideText: true,
+                            suffixoIcon: true,
                           ),
                           Padding(
                             padding: const EdgeInsets.symmetric(
                               horizontal: 8,
-                              vertical: 16,
-                            ),
-                            child: TextFormField(
-                              controller: _password,
-                              validator: Validatorless.multiple(
-                                [
-                                  Validatorless.min(6, 'field min 6'),
-                                  Validatorless.required('filed is required')
-                                ],
-                              ),
-                              keyboardType: TextInputType.visiblePassword,
-                              decoration: InputDecoration(
-                                labelStyle: GoogleFonts.karla(
-                                  fontSize: 14,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                                border: const OutlineInputBorder(),
-                                labelText: 'Password',
-                                prefixIcon: const Padding(
-                                  padding: EdgeInsets.all(5),
-                                  child: Icon(
-                                    Icons.lock,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                                suffixIcon: GestureDetector(
-                                  child: Icon(
-                                    showPassword == false
-                                        ? Icons.visibility_off
-                                        : Icons.visibility,
-                                    color: Colors.black,
-                                  ),
-                                  onTap: () {
-                                    setState(() {
-                                      showPassword = !showPassword;
-                                    });
-                                  },
-                                ),
-                              ),
-                              obscureText: showPassword == false ? true : false,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8,
-                              vertical: 36,
+                              vertical: 26,
                             ),
                             child: TextButton(
                               onPressed: () {},
@@ -175,8 +127,8 @@ class _LoginState extends State<Login> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            ElevatedButton(
-                              onPressed: () {
+                            Buttons(
+                              func: () {
                                 if (_formKey.currentState!.validate()) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     const SnackBar(
@@ -185,40 +137,17 @@ class _LoginState extends State<Login> {
                                   // Navigator.pop(context);
                                 }
                               },
-                              style: ElevatedButton.styleFrom(
-                                foregroundColor: Colors.green,
-                                backgroundColor: Colors.white,
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: Text(
-                                  'Login',
-                                  style: GoogleFonts.karla(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                ),
-                              ),
+                              text: 'Login',
                             ),
-                            TextButton(
-                              onPressed: () {
+                            Buttons(
+                              text: 'I don’t have account',
+                              func: () {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                       builder: ((context) => const Cadastro()),
                                     ));
                               },
-                              style: TextButton.styleFrom(
-                                foregroundColor: Colors.green,
-                                backgroundColor: Colors.white,
-                              ),
-                              child: Text(
-                                'I don’t have account',
-                                style: GoogleFonts.karla(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
                             ),
                           ],
                         ),

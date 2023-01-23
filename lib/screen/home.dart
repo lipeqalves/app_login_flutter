@@ -1,3 +1,4 @@
+import 'package:clone_heberlove/components/buttons.dart';
 import 'package:clone_heberlove/components/container_image.dart';
 import 'package:clone_heberlove/screen/login.dart';
 import 'package:flutter/material.dart';
@@ -16,22 +17,12 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          widget.title,
-          style: GoogleFonts.playfairDisplay(
-            fontSize: 24,
-            color: Colors.white,
-            fontWeight: FontWeight.w700,
-          ),
-        ),
-      ),
       body: Stack(
         children: [
           const ContainerImage(),
           Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
                   'Herbalova',
@@ -44,28 +35,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(28.0),
-                  child: TextButton(
-                    onPressed: () {
+                  child: Buttons(
+                    text: 'Sign to your account',
+                    func: () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: ((context) => const Login()),
                           ));
                     },
-                    style: TextButton.styleFrom(
-                      foregroundColor: Colors.green,
-                      backgroundColor: Colors.white,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(6.0),
-                      child: Text(
-                        'Sign to your account',
-                        style: GoogleFonts.karla(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                    ),
                   ),
                 ),
                 const FlutterLogo(

@@ -1,8 +1,11 @@
 import 'package:clone_heberlove/components/container_image.dart';
+import 'package:clone_heberlove/components/input.dart';
 import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:validatorless/validatorless.dart';
+
+import '../components/buttons.dart';
 
 class Cadastro extends StatefulWidget {
   const Cadastro({super.key});
@@ -74,180 +77,75 @@ class _CadastroState extends State<Cadastro> {
                               ),
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8,
-                              vertical: 10,
-                            ),
-                            child: TextFormField(
+                          Input(
                               controller: _name,
-                              maxLength: 40,
-                              validator: Validatorless.multiple(
+                              type: TextInputType.name,
+                              label: 'Your Name',
+                              validetion: Validatorless.multiple(
                                 [
                                   Validatorless.required('filed is required'),
                                   Validatorless.min(4, 'field min 4')
                                 ],
                               ),
-                              keyboardType: TextInputType.name,
-                              decoration: InputDecoration(
-                                labelStyle: GoogleFonts.karla(
-                                  fontSize: 14,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                                border: const OutlineInputBorder(),
-                                labelText: 'Your Name',
-                                prefixIcon: const Padding(
-                                  padding: EdgeInsets.all(5),
-                                  child: Icon(
-                                    Icons.person,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8,
-                              vertical: 10,
-                            ),
-                            child: TextFormField(
+                              prefixoIcone: Icons.person,
+                              hideText: false,
+                              suffixoIcon: false),
+                          Input(
+                              type: TextInputType.emailAddress,
                               controller: _email,
-                              maxLength: 20,
-                              validator: Validatorless.multiple([
-                                Validatorless.email('Value is not email'),
-                                Validatorless.required('filed is required')
-                              ]),
-                              keyboardType: TextInputType.emailAddress,
-                              decoration: InputDecoration(
-                                labelStyle: GoogleFonts.karla(
-                                  fontSize: 14,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                                border: const OutlineInputBorder(),
-                                labelText: 'Email',
-                                prefixIcon: const Padding(
-                                  padding: EdgeInsets.all(5),
-                                  child: Icon(
-                                    Icons.email,
-                                    color: Colors.black,
-                                  ),
-                                ),
+                              label: 'Email',
+                              validetion: Validatorless.multiple(
+                                [
+                                  Validatorless.email('Value is not email'),
+                                  Validatorless.required('filed is required')
+                                ],
                               ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8,
-                              vertical: 10,
-                            ),
-                            child: TextFormField(
+                              prefixoIcone: Icons.email,
+                              hideText: false,
+                              suffixoIcon: false),
+                          Input(
                               controller: _phone,
-                              maxLength: 11,
-                              validator: Validatorless.multiple([
-                                Validatorless.number('Value not a number'),
-                                Validatorless.max(11, 'fild max 11'),
-                                Validatorless.min(11, 'fild min 11'),
-                                Validatorless.required('filed is required')
-                              ]),
-                              keyboardType: TextInputType.phone,
-                              decoration: InputDecoration(
-                                labelStyle: GoogleFonts.karla(
-                                  fontSize: 14,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                                border: const OutlineInputBorder(),
-                                labelText: 'Phone',
-                                prefixIcon: const Padding(
-                                  padding: EdgeInsets.all(5),
-                                  child: Icon(
-                                    Icons.phone_android,
-                                    color: Colors.black,
-                                  ),
-                                ),
+                              type: TextInputType.phone,
+                              label: 'Phone',
+                              validetion: Validatorless.multiple(
+                                [
+                                  Validatorless.number('Value not a number'),
+                                  Validatorless.max(11, 'fild max 11'),
+                                  Validatorless.min(11, 'fild min 11'),
+                                  Validatorless.required('filed is required')
+                                ],
                               ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8,
-                              vertical: 10,
-                            ),
-                            child: TextFormField(
+                              prefixoIcone: Icons.phone_android,
+                              hideText: false,
+                              suffixoIcon: false),
+                          Input(
                               controller: _password,
-                              maxLength: 20,
-                              validator: Validatorless.multiple([
-                                Validatorless.required('filed is required'),
-                                Validatorless.min(6, 'field min 6')
-                              ]),
-                              keyboardType: TextInputType.visiblePassword,
-                              decoration: InputDecoration(
-                                labelStyle: GoogleFonts.karla(
-                                  fontSize: 14,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                                border: const OutlineInputBorder(),
-                                labelText: 'Password',
-                                prefixIcon: const Padding(
-                                  padding: EdgeInsets.all(5),
-                                  child: Icon(
-                                    Icons.lock,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                                suffixIcon: GestureDetector(
-                                    child: Icon(
-                                      color: Colors.black,
-                                      showPassword == false
-                                          ? Icons.visibility_off
-                                          : Icons.visibility,
-                                    ),
-                                    onTap: () {
-                                      setState(() {
-                                        showPassword = !showPassword;
-                                      });
-                                    }),
+                              type: TextInputType.number,
+                              label: 'Password',
+                              validetion: Validatorless.multiple(
+                                [
+                                  Validatorless.required('filed is required'),
+                                  Validatorless.min(6, 'field min 6')
+                                ],
                               ),
-                              obscureText: showPassword == false ? true : false,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8,
-                              vertical: 10,
-                            ),
-                            child: TextFormField(
-                              controller: _comfirmPassword,
-                              maxLength: 20,
-                              validator: Validatorless.multiple([
+                              prefixoIcone: Icons.lock,
+                              hideText: true,
+                              suffixoIcon: true),
+                          Input(
+                            controller: _comfirmPassword,
+                            type: TextInputType.number,
+                            label: 'Repeat Password',
+                            validetion: Validatorless.multiple(
+                              [
                                 Validatorless.required('filed is required'),
                                 Validatorless.min(6, 'field min 6'),
                                 Validatorless.compare(
                                     _password, 'Passwords do not match')
-                              ]),
-                              keyboardType: TextInputType.visiblePassword,
-                              decoration: InputDecoration(
-                                labelStyle: GoogleFonts.karla(
-                                  fontSize: 14,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                                border: const OutlineInputBorder(),
-                                labelText: 'Repeat Password',
-                                prefixIcon: const Padding(
-                                  padding: EdgeInsets.all(5),
-                                  child: Icon(
-                                    Icons.lock,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              ),
-                              obscureText: showPassword == false ? true : false,
+                              ],
                             ),
+                            prefixoIcone: Icons.lock,
+                            hideText: true,
+                            suffixoIcon: true,
                           ),
                         ],
                       ),
@@ -255,8 +153,8 @@ class _CadastroState extends State<Cadastro> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          ElevatedButton(
-                            onPressed: () {
+                          Buttons(
+                            func: () {
                               if (_formKey.currentState!.validate()) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
@@ -265,36 +163,13 @@ class _CadastroState extends State<Cadastro> {
                                 Navigator.pop(context);
                               }
                             },
-                            style: ElevatedButton.styleFrom(
-                              foregroundColor: Colors.green,
-                              backgroundColor: Colors.white,
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                'Register',
-                                style: GoogleFonts.karla(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                            ),
+                            text: 'Register',
                           ),
-                          TextButton(
-                            onPressed: () {
+                          Buttons(
+                            func: () {
                               Navigator.pop(context);
                             },
-                            style: TextButton.styleFrom(
-                              foregroundColor: Colors.green,
-                              backgroundColor: Colors.white,
-                            ),
-                            child: Text(
-                              'I have an account',
-                              style: GoogleFonts.karla(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
+                            text: 'I have an account',
                           ),
                         ],
                       ),
